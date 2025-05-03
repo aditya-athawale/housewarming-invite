@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>गृहप्रवेश आमंत्रण</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+</head>
+<body>
+  <div class="container">
+    <section class="intro">
+      <h1 class="heading">🏠 नवीन घरात स्वागत!</h1>
+      <p class="subtitle">आपलं मनःपूर्वक आमंत्रण</p>
+    </section>
+
+    <section class="details">
+      <p>📅 दिनांक: <strong>१६ ऑगस्ट २०२५</strong></p>
+      <p>🕚 वेळ: <strong>सकाळी ११ वाजता</strong></p>
+      <p>📍 ठिकाण: <a href="https://maps.app.goo.gl/2oBXdPaGkhBfFHrb7" target="_blank">Noble Heights, मालाड ईस्ट, कुरार गाव, फ्लॅट नं. १२०६</a></p>
+    </section>
+
+    <section class="countdown">
+      <p>🎉 समारंभापर्यंत वेळ:</p>
+      <p id="timer">मोजत आहे...</p>
+    </section>
+
+    <section class="rsvp-form">
+      <h3>📝 आपली उपस्थिती नोंदवा</h3>
+      <input type="text" id="name" placeholder="तुमचं नाव" required />
+      <input type="tel" id="phone" placeholder="मोबाईल नंबर (10 अंकी)" pattern="[0-9]{10}" required />
+      <button type="submit" id="submit">RSVP करा</button>
+    </section>
+
+    <footer>
+      💙 आपली वाट पाहत आहोत — अथवले कुटुंब
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

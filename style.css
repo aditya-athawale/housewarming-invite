@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Baloo 2', cursive;
+  background: linear-gradient(to right, #e0f7fa, #b3e5fc);
+  color: #004e8c;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #004080;
+  animation: fadeIn 2s ease-out;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+.details p {
+  font-size: 1.1rem;
+  margin: 20px 0;
+  color: #003366;
+}
+
+a {
+  text-decoration: none;
+  color: #00796b;
+}
+
+#timer {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #003366;
+}
+
+.rsvp-form input, .rsvp-form button {
+  width: 90%;
+  padding: 12px;
+  margin: 10px auto;
+  border-radius: 15px;
+  border: 2px solid #004080;
+  font-size: 1rem;
+}
+
+.rsvp-form input {
+  background-color: #e3f3ff;
+  color: #003366;
+}
+
+.rsvp-form button {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rsvp-form button:hover {
+  background-color: #005fcc;
+}
+
+footer {
+  font-size: 0.9rem;
+  margin-top: 20px;
+  color: #333;
+  animation: fadeIn 3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
