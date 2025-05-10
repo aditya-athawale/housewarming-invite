@@ -1,25 +1,3 @@
-// Particles.js initialization
-document.addEventListener('DOMContentLoaded', function() {
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 800 } },
-      color: { value: "#3b82f6" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
-      line_linked: { enable: true, distance: 150, color: "#3b82f6", opacity: 0.4, width: 1 },
-      move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
-      }
-    }
-  });
-});
-
 // Countdown Timer
 const targetDate = new Date("August 16, 2025 11:00:00").getTime();
 
@@ -50,7 +28,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // Form submission for invitation card
-document.getElementById("submit").addEventListener("click", function (e) {
+document.getElementById("submit").addEventListener("click", async function (e) {
   e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
@@ -67,132 +45,128 @@ document.getElementById("submit").addEventListener("click", function (e) {
   }
 
   // Generate and download the invitation card
-  generateInvitationCard(name);
+  await generateAndDownloadInvitation(name);
   
   // Reset form
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
 });
 
-function generateInvitationCard(name) {
-  // Create a new window with the card content
-  const cardWindow = window.open('', '_blank');
-  cardWindow.document.write(`
-    <!DOCTYPE html>
-    <html lang="mr">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>${name} - गृहप्रवेश आमंत्रण</title>
-      <style>
-        body {
-          font-family: 'Baloo 2', cursive;
-          background-color: #f5f5f5;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-          margin: 0;
-          padding: 20px;
-        }
-        .invitation-card {
-          width: 100%;
-          max-width: 600px;
-          background: white;
-          border-radius: 20px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          position: relative;
-        }
-        .card-header {
-          background: linear-gradient(135deg, #2563eb, #1e40af);
-          color: white;
-          padding: 30px;
-          text-align: center;
-        }
-        .card-header h1 {
-          margin: 0;
-          font-size: 2.2rem;
-        }
-        .card-header p {
-          margin: 10px 0 0;
-          font-size: 1.2rem;
-        }
-        .card-body {
-          padding: 30px;
-          text-align: center;
-          position: relative;
-        }
-        .guest-name {
-          font-size: 2rem;
-          color: #2563eb;
-          margin-bottom: 20px;
-          padding-bottom: 10px;
-          border-bottom: 2px dashed #2563eb;
-        }
-        .card-details {
-          margin: 20px 0;
-          text-align: left;
-        }
-        .card-details p {
-          margin: 15px 0;
-          font-size: 1.1rem;
-        }
-        .card-footer {
-          background: #f8fafc;
-          padding: 20px;
-          text-align: center;
-          font-style: italic;
-        }
-        @media print {
-          body {
-            background: none;
-          padding: 0;
-          display: block;
-          height: auto;
-          min-height: auto;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-          zoom: 0.9;
-          transform: scale(0.9);
-          transform-origin: 0 0;
-        }
-        }
-      </style>
-    </head>
-    <body>
-      <div class="invitation-card">
-        <div class="card-header">
-          <h1>गृहप्रवेश आमंत्रण</h1>
-          <p>अथवले कुटुंब</p>
-        </div>
-        <div class="card-body">
-          <div class="guest-name">${name} यांना</div>
-          <div class="card-details">
-            <p>📅 दिनांक: <strong>१६ ऑगस्ट २०२५</strong></p>
-            <p>🕚 वेळ: <strong>सकाळी ११ वाजता</strong></p>
-            <p>📍 ठिकाण: <strong>Noble Heights, मालाड ईस्ट, कुरार गाव, फ्लॅट नं. १२०६</strong></p>
-          </div>
-          <p>आपल्या सहभागासाठी आभारी आहोत. आपली उपस्थिती आमच्या या आनंदाच्या प्रसंगाला अधिक सुंदर बनवेल.</p>
-        </div>
-        <div class="card-footer">
-          💙 आपली वाट पाहत आहोत
-        </div>
-      </div>
-      <script>
-        // Automatically trigger print dialog when loaded
-        window.onload = function() {
-          setTimeout(function() {
-            window.print();
-          }, 500);
-        };
-      </script>
-    </body>
-    </html>
-  `);
-  cardWindow.document.close();
+async function generateAndDownloadInvitation(name) {
+  // Create canvas for the invitation card
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 1600;
+  const ctx = canvas.getContext('2d');
   
-  showAlert(`धन्यवाद, ${name}! आपले आमंत्रण पत्र डाउनलोड होत आहे.`, "success");
+  // Card background
+  ctx.fillStyle = '#f8f4e8';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Decorative border
+  ctx.strokeStyle = '#d4a762';
+  ctx.lineWidth = 15;
+  ctx.strokeRect(20, 20, canvas.width-40, canvas.height-40);
+  
+  // Header
+  ctx.fillStyle = '#1e40af';
+  ctx.fillRect(0, 0, canvas.width, 200);
+  
+  // Header text
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 60px "Baloo 2"';
+  ctx.textAlign = 'center';
+  ctx.fillText('गृहप्रवेश आमंत्रण', canvas.width/2, 120);
+  ctx.font = '30px "Baloo 2"';
+  ctx.fillText('अथवले कुटुंब', canvas.width/2, 170);
+  
+  // Guest name
+  ctx.fillStyle = '#1e40af';
+  ctx.font = 'bold 70px "Baloo 2"';
+  ctx.fillText(`${name} यांना`, canvas.width/2, 300);
+  
+  // Divider
+  ctx.strokeStyle = '#d4a762';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(200, 350);
+  ctx.lineTo(canvas.width-200, 350);
+  ctx.stroke();
+  
+  // Event details
+  ctx.fillStyle = '#333333';
+  ctx.font = '40px "Baloo 2"';
+  ctx.textAlign = 'left';
+  
+  // Date
+  ctx.fillText('📅 दिनांक:', 150, 450);
+  ctx.font = 'bold 40px "Baloo 2"';
+  ctx.fillText('१६ ऑगस्ट २०२५', 400, 450);
+  
+  // Time
+  ctx.font = '40px "Baloo 2"';
+  ctx.fillText('🕚 वेळ:', 150, 530);
+  ctx.font = 'bold 40px "Baloo 2"';
+  ctx.fillText('सकाळी ११ वाजता', 400, 530);
+  
+  // Location
+  ctx.font = '40px "Baloo 2"';
+  ctx.fillText('📍 ठिकाण:', 150, 610);
+  ctx.font = 'bold 40px "Baloo 2"';
+  ctx.fillText('Noble Heights, मालाड ईस्ट', 400, 610);
+  ctx.fillText('कुरार गाव, फ्लॅट नं. १२०६', 400, 670);
+  
+  // Location QR Code (using Google Maps URL)
+  const mapsUrl = 'https://maps.app.goo.gl/2oBXdPaGkhBfFHrb7';
+  const qrCodeSize = 300;
+  const qrCodeX = canvas.width/2 - qrCodeSize/2;
+  const qrCodeY = 750;
+  
+  // Create temporary QR code
+  const tempQrDiv = document.createElement('div');
+  tempQrDiv.style.display = 'none';
+  document.body.appendChild(tempQrDiv);
+  
+  // Using simple API for QR code generation
+  const qrImg = new Image();
+  qrImg.crossOrigin = 'Anonymous';
+  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=${qrCodeSize}x${qrCodeSize}&data=${encodeURIComponent(mapsUrl)}`;
+  
+  await new Promise((resolve) => {
+    qrImg.onload = resolve;
+  });
+  
+  ctx.drawImage(qrImg, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
+  
+  // Footer text
+  ctx.fillStyle = '#1e40af';
+  ctx.font = 'italic 40px "Baloo 2"';
+  ctx.textAlign = 'center';
+  ctx.fillText('💙 आपली वाट पाहत आहोत', canvas.width/2, 1400);
+  
+  // Decorative elements
+  ctx.strokeStyle = '#d4a762';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(150, 150, 100, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(canvas.width-150, 150, 100, 0, Math.PI * 2);
+  ctx.stroke();
+  
+  // Convert canvas to image and download
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${name}_गृहप्रवेश_आमंत्रण.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showAlert(`धन्यवाद, ${name}! आपले आमंत्रण पत्र डाउनलोड झाले आहे.`, "success");
+  }, 'image/png');
 }
 
 function showAlert(message, type) {
