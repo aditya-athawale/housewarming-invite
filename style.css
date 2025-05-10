@@ -52,16 +52,6 @@ body {
   position: relative;
   z-index: 1;
   margin: 2rem 0;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .logo {
@@ -101,15 +91,6 @@ body {
   background: linear-gradient(to right, var(--primary), var(--accent));
   margin: 1rem auto;
   border-radius: 3px;
-  transform: scaleX(0);
-  transform-origin: center;
-  animation: scaleIn 1s ease-out 0.5s forwards;
-}
-
-@keyframes scaleIn {
-  to {
-    transform: scaleX(1);
-  }
 }
 
 .details {
@@ -124,24 +105,11 @@ body {
   display: flex;
   align-items: center;
   text-align: left;
-  transition: all 0.3s ease-out;
-  transform: translateX(-20px);
-  opacity: 0;
-}
-
-.detail-card:nth-child(1) { animation: slideIn 0.8s ease-out 0.8s forwards; }
-.detail-card:nth-child(2) { animation: slideIn 0.8s ease-out 1s forwards; }
-.detail-card:nth-child(3) { animation: slideIn 0.8s ease-out 1.2s forwards; }
-
-@keyframes slideIn {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  transition: all 0.3s;
 }
 
 .detail-card:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.1);
 }
@@ -161,41 +129,15 @@ body {
 a {
   text-decoration: none;
   color: var(--accent);
-  transition: all 0.3s;
-  position: relative;
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--secondary);
-  transition: width 0.3s;
+  transition: color 0.3s;
 }
 
 a:hover {
   color: var(--secondary);
 }
 
-a:hover::after {
-  width: 100%;
-}
-
 .countdown {
   margin: 2rem 0;
-  transform: translateX(20px);
-  opacity: 0;
-  animation: slideInRight 0.8s ease-out 1.4s forwards;
-}
-
-@keyframes slideInRight {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
 }
 
 .countdown h3 {
@@ -217,12 +159,11 @@ a:hover::after {
   padding: 1rem;
   min-width: 80px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-out;
+  transition: all 0.3s;
 }
 
 .time-box:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .time-box span {
@@ -239,9 +180,6 @@ a:hover::after {
 
 .rsvp-form {
   margin: 2rem 0;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 1.6s forwards;
 }
 
 .rsvp-form h3 {
@@ -287,11 +225,6 @@ a:hover::after {
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.6);
-  transition: color 0.3s;
-}
-
-.form-group:hover i {
-  color: var(--secondary);
 }
 
 .rsvp-form button {
@@ -311,25 +244,6 @@ a:hover::after {
   gap: 0.5rem;
   transition: all 0.3s;
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.rsvp-form button::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: rotate(30deg);
-  transition: transform 0.5s;
 }
 
 .rsvp-form button:hover {
@@ -338,45 +252,12 @@ a:hover::after {
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
 }
 
-.rsvp-form button:hover::after {
-  transform: rotate(30deg) translate(20%, 20%);
-}
-
 footer {
   font-size: 1rem;
   margin-top: 2rem;
   color: var(--light);
   opacity: 0.8;
   text-align: center;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 1.8s forwards;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.social-links a {
-  color: var(--light);
-  background: rgba(255, 255, 255, 0.1);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.social-links a:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-3px) rotate(10deg);
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
 /* Custom Alert Styling */
